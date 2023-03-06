@@ -1,11 +1,11 @@
-package dev.github.burak.rsoffsets
+package dev.github.burak.offsetsrs
 
 import com.intellij.codeInsight.hints.*
 import com.intellij.openapi.editor.Editor
 import com.intellij.psi.PsiFile
 
 @Suppress("UnstableApiUsage")
-open class RsOffsetsInlayHintsProvider : InlayHintsProvider<Any> {
+open class OffsetsRsInlayHintsProvider : InlayHintsProvider<Any> {
     companion object {
         private const val NAME = "RsOffsets"
         private val KEY = SettingsKey<Any>(NAME)
@@ -27,7 +27,7 @@ open class RsOffsetsInlayHintsProvider : InlayHintsProvider<Any> {
         editor: Editor,
         settings: Any,
         sink: InlayHintsSink
-    ) = RsOffsetsHintsCollector(editor)
+    ) = HintsCollector(editor)
 
-    override fun createConfigurable(settings: Any) = HintConfigurable()
+    override fun createConfigurable(settings: Any) = HintsConfigurable()
 }

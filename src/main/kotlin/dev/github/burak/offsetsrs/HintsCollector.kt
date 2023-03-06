@@ -1,4 +1,4 @@
-package dev.github.burak.rsoffsets
+package dev.github.burak.offsetsrs
 
 import com.intellij.codeInsight.hints.FactoryInlayHintsCollector
 import com.intellij.codeInsight.hints.InlayHintsSink
@@ -8,10 +8,9 @@ import org.rust.lang.core.psi.*
 import org.rust.lang.core.types.ty.*
 
 @Suppress("UnstableApiUsage")
-class RsOffsetsHintsCollector(editor: Editor) : FactoryInlayHintsCollector(editor) {
+class HintsCollector(editor: Editor) : FactoryInlayHintsCollector(editor) {
     override fun collect(element: PsiElement, editor: Editor, sink: InlayHintsSink): Boolean {
         element.accept(RsStructVisitor(factory, sink))
-
         return true
     }
 }

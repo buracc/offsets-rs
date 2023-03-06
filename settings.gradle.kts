@@ -1,1 +1,1 @@
-rootProject.name = "rsoffsets"
+rootProject.name = "offsets-rs"

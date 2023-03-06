@@ -1,4 +1,4 @@
-package dev.github.burak.offsetsrs
+package dev.github.buracc.offsetsrs
 
 import com.intellij.codeInsight.hints.ChangeListener
 import com.intellij.codeInsight.hints.ImmediateConfigurable

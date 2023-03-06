@@ -1,4 +1,4 @@
-package dev.github.burak.offsetsrs
+package dev.github.buracc.offsetsrs
 
 import com.intellij.codeInsight.hints.InlayHintsSink
 import com.intellij.codeInsight.hints.presentation.PresentationFactory
@@ -17,17 +17,28 @@ class RsStructVisitor(
         private val structSizes = mutableMapOf<String, Long>()
     }
 
-    override fun visitStructItem(struct: RsStructItem) {
-        val structSize = struct.fields
+    override fun visitStructItem(structItem: RsStructItem) {
+        val structSize = structItem.fields
             .mapNotNull { it.typeReference?.rawType }
             .sumOf { calculateSize(it) }
 
-        structSizes[struct.name ?: return] = structSize
+        val structName = structItem.name ?: return
+        structSizes[structName] = structSize
+
+        val struct = StructRepository.get(structName)
 
         var currOffset = 0L
-        struct.fields.forEach { field ->
+        structItem.fields.forEach { field ->
             val rawType = field.typeReference?.rawType ?: return@forEach
             val fieldSize = calculateSize(rawType)
+            val fieldName = field.name ?: return@forEach
+
+            struct.updateField(
+                fieldName,
+                rawType,
+                fieldSize,
+                currOffset
+            )
 
             var text = "0x${currOffset.toString(16).uppercase()}"
 

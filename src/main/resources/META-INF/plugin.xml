@@ -25,6 +25,7 @@
     <!-- Extension points defined by the plugin.
          Read more: https://plugins.jetbrains.com/docs/intellij/plugin-extension-points.html -->
     <extensions defaultExtensionNs="com.intellij">
-        <codeInsight.inlayProvider language="Rust" implementationClass="dev.github.burak.offsetsrs.OffsetsRsInlayHintsProvider" />
+        <lang.documentationProvider language="Rust" implementationClass="dev.github.buracc.offsetsrs.OffsetsDocumentationProvider"/>
+        <codeInsight.inlayProvider language="Rust" implementationClass="dev.github.buracc.offsetsrs.OffsetsRsInlayHintsProvider" />
     </extensions>
 </idea-plugin>
